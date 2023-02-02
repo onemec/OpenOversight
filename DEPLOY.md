@@ -4,9 +4,15 @@ When this application is deployed you will need to do some setup. These instruct
 
 # Dependencies
 
-We distribute a `requirements.txt` file listing the things the application depends upon. `pip install -r requirements.txt` will install prerequisites.
+I created a [Poetry file](./pyproject.toml) which defines all dependencies as well as:
 
-You will also need the `libpq-dev` and `python3-dev` packages (required to build `psycopg2`).
+- [poetry-plugin-up](https://github.com/MousaZeidBaker/poetry-plugin-up) to update dependencies without conflict
+- [poetry-plugin-export](https://github.com/python-poetry/poetry-plugin-export) to export back to a requirements.txt
+
+Firstly, you will need to install [Poetry](https://python-poetry.org/docs/#installation).
+To update dependencies in the Poetry file, run `poetry up --latest`.
+To create a `requirements.txt` run `poetry export -f requirements.txt --output requirements.txt`.
+`pip install -r requirements.txt` will install prerequisites.
 
 # S3 Image Hosting
 
