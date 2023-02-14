@@ -68,7 +68,6 @@ def parse_str(value: Optional[str], default: Optional[str] = "") -> Optional[str
 
 
 def create_officer_from_dict(data: Dict[str, Any], force_id: bool = False) -> Officer:
-
     officer = Officer(
         department_id=int(data["department_id"]),
         last_name=parse_str(data.get("last_name", "")),
@@ -92,7 +91,6 @@ def create_officer_from_dict(data: Dict[str, Any], force_id: bool = False) -> Of
 
 
 def update_officer_from_dict(data: Dict[str, Any], officer: Officer) -> Officer:
-
     if "department_id" in data.keys():
         officer.department_id = int(data["department_id"])
     if "last_name" in data.keys():
@@ -122,7 +120,6 @@ def update_officer_from_dict(data: Dict[str, Any], officer: Officer) -> Officer:
 def create_assignment_from_dict(
     data: Dict[str, Any], force_id: bool = False
 ) -> Assignment:
-
     assignment = Assignment(
         officer_id=int(data["officer_id"]),
         star_no=parse_str(data.get("star_no"), None),
@@ -238,7 +235,12 @@ def get_or_create_license_plate_from_dict(
     number = data["number"]
     state = parse_str(data.get("state"), None)
     state_validator(state)
-    return get_or_create(db.session, LicensePlate, number=number, state=state,)
+    return get_or_create(
+        db.session,
+        LicensePlate,
+        number=number,
+        state=state,
+    )
 
 
 def get_or_create_location_from_dict(
